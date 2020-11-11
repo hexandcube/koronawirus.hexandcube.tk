@@ -1,0 +1,49 @@
+<div class="progress-container sticky-top" style="position:fixed; top:0; right:0;" role="progressbar">
+    <div class="progress-bar" role="progressbar" id="scroll-progress"></div>
+</div>
+<header class="section">
+    <div class="container">
+        <nav class="navbar v-align-middle" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <a href="/" class="navbar-item item-text">
+                    <img class="is-rounded profilepicture" alt="Hexandcube"
+                        src="https://storage.hexandcube.tk/images/logo.png" style="margin-right: 10px;">
+                    <span class="is-orange">Hexandcube&nbsp; </span> | Koronawirus
+                </a>
+
+                <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+                    data-target="mainNavbar">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+
+            <div id="mainNavbar" class="navbar-menu">
+                <div class="navbar-start">
+
+                </div>
+                <div class="navbar-end">
+                    {{ $currentPage := . }}
+                    {{ range .Site.Menus.navbar }}
+                        <a href="{{ .URL }}"
+                            class="navbar-item item-text
+                            {{if or ($currentPage.IsMenuCurrent "navbar" .) ($currentPage.HasMenuCurrent "navbar" .) }}
+                            is-active{{end}}">
+                            {{ .Name }}
+                        </a>
+                    {{ end }}
+                    <div class="navbar-item">
+                        <div class="theme-switch-wrapper ">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox" class="theme-switch-checkbox" />
+                                <div class="theme-switch-icon">🌗</div>
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+{{ partial "head.html" . }}
+
+<body>
+    <noscript>
+        <style>
+            .js-only {
+                display: none;
+            }
+        </style>
+    </noscript>
+    {{ partial "header.html" . }}
+    <div id="content">
+        {{ block "main" . }}{{ end }}
+    </div>
+    {{ partial "footer.html" . }}
+    {{ partial "scripts.html" . }}
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<footer class="footer">
+    <div class="container">
+        <nav class="columns v-align-middle footer-level">
+            <div class="level-left footer-level">
+                <div class="level-item">
+                    <p class="is-5 monospace">
+                        <span class="logotype title is-4"><span class="is-orange">Hexandcube</span> <span
+                                class="is-font"> | Koronawirus</span>
+                            </span><br>
+                        Ostatnia Aktualizacja: <span id="lastUpdate"></span><br>
+                        Generowanie wykresów: <a href="https://www.chartjs.org/">Chart.js</a>
+                        <br>
+                        Źródła: <a href="https://mz.gov.pl">Ministerstwo Zdrowia</a> przez <a
+                            href="https://disease.sh/">API disease.sh</a>
+                    </p>
+                </div>
+            </div>
+            <div class="level-center footer-level">
+
+            </div>
+            <div class="level-right column footer-level">
+                <p class="monospace">
+                    <b>Stworzono z <i class="far fa-heart"></i> w Polsce</b><br>
+                    Copyright <i class="far fa-copyright fa-xs"></i> Hexandcube 2020
+                    <br style="margin-bottom: 5px;">
+                    <script type="text/javascript" src="https://cdn.statuspage.io/se-v2.js"></script>
+                    <script>
+                        var statuspage = new StatusPage.page({
+                            page: 'wdf91pvxlsbj'
+                        });
+                        statuspage.summary({
+                            success: function (data) {
+                                var statusEmbed = document.querySelector("#system-status");
+                                var statusDot = document.querySelector("#status-dot");
+                                var serviceStatus = data.status.indicator;
+                                if ("none" == serviceStatus) {
+                                    statusEmbed.innerText = "Wszystkie Usługi Sprawne";
+                                } else if ("minor" == serviceStatus) {
+                                    statusEmbed.innerText = "Drobna Awaria";
+                                } else if ("major" == serviceStatus) {
+                                    statusEmbed.innerText = "Poważna Awaria";
+                                } else if ("maintenance" == serviceStatus) {
+                                    statusEmbed.innerText = "Konserwacja Techniczna";
+                                } else {
+                                    statusEmbed.innerText = "Nieznany";
+                                }
+                                statusEmbed.classList.add(serviceStatus);
+                                statusDot.classList.add(serviceStatus);
+                            }
+                        });
+                    </script>
+                    <a href="https://status.hexandcube.tk" target="_blank">
+                        <div class="status-div">
+                            <span class="status-label">Status:</span> <span id="status-dot"></span> <span
+                                id="system-status">Ładowanie
+                                statusu...</span>
+                        </div>
+                    </a>
+                </p>
+            </div>
+        </nav>
+    </div>
+</footer>

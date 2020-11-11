@@ -1,0 +1,261 @@
+/* 
+    Hexandcube CSS Helpers
+    Version 1.0 | MIT License
+*/
+
+.is-rounded {
+    border-radius: 50%;
+}
+
+.logotype {
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+}
+
+.smooth {
+    transition: all 0.2s !important;
+}
+
+.float-left {
+    float: left !important;
+}
+
+.float-right {
+    float: right !important;
+}
+
+.bold {
+    font-weight: bold !important;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.v-align-top {
+    vertical-align: top !important;
+}
+
+.v-align-bottom {
+    vertical-align: bottom !important;
+}
+
+.v-align-middle {
+    vertical-align: middle !important;
+}
+
+.has-no-shadow {
+    box-shadow: none !important;
+}
+
+.align-right {
+    text-align: right !important;
+}
+
+.align-center {
+    text-align: center !important;
+}
+
+.align-left {
+    text-align: left !important;
+}
+
+.is-64x64 {
+    height: 64px;
+    width: 64px;
+}
+
+@media (max-width: 1024px) {
+    .mobile-center {
+        text-align: center !important;
+    }
+}
+
+
+.is-white {
+    color: #ffffff !important;
+}
+
+.is-pbg {
+    color: var(--primary-bg-color) !important;
+}
+
+.is-sbg {
+    color: var(--secondary-bg-color) !important;
+}
+
+.is-fontc {
+    color: var(--font-color) !important;
+}
+
+.is-gray {
+    color: var(--color-gray) !important;
+}
+
+.is-yellow {
+    color: var(--color-yellow) !important;
+}
+
+.is-red {
+    color: var(--color-red) !important;
+}
+
+.is-orange {
+    color: var(--color-orange) !important;
+}
+
+.is-green {
+    color: var(--color-green) !important;
+}
+
+.is-purple {
+    color: var(--color-purple) !important;
+}
+
+.is-blue {
+    color: var(--color-blue) !important;
+}
+
+.is-pink {
+    color: var(--color-pink) !important;
+}
+
+.is-yellow-light {
+    color: var(--color-yellow-light) !important;
+}
+
+.is-red-light {
+    color: var(--color-red-light) !important;
+}
+
+.is-orange-light {
+    color: var(--color-orange-light) !important;
+}
+
+.is-green-light {
+    color: var(--color-green-light) !important;
+}
+
+.is-purple-light {
+    color: var(--color-purple-light) !important;
+}
+
+.is-blue-light {
+    color: var(--color-blue-light) !important;
+}
+
+.is-pink-light {
+    color: var(--color-pink-light) !important;
+}
+
+.has-white-bg {
+    background-color: #ffffff !important;
+}
+
+.has-fontc-bg {
+    background-color: var(--font-color) !important;
+}
+
+.has-pbg-bg {
+    background-color: var(--primary-bg-color) !important;
+}
+
+.has-sbg-bg {
+    background-color: var(--secondary-bg-color) !important;
+}
+
+.has-gray-bg {
+    background-color: var(--color-gray) !important;
+}
+
+.has-yellow-bg {
+    background-color: var(--color-yellow) !important;
+}
+
+.has-red-bg {
+    background-color: var(--color-red) !important;
+}
+
+.has-orange-bg {
+    background-color: var(--color-orange) !important;
+}
+
+.has-green-bg {
+    background-color: var(--color-green) !important;
+}
+
+.has-purple-bg {
+    background-color: var(--color-purple) !important;
+}
+
+.has-blue-bg {
+    background-color: var(--color-blue) !important;
+}
+
+.has-pink-bg {
+    background-color: var(--color-pink) !important;
+}
+
+.has-yellow-light-bg {
+    background-color: var(--color-yellow-light) !important;
+}
+
+.has-red-light-bg {
+    background-color: var(--color-red-light) !important;
+}
+
+.has-orange-light-bg {
+    background-color: var(--color-orange-light) !important;
+}
+
+.has-green-light-bg {
+    background-color: var(--color-green-light) !important;
+}
+
+.has-purple-light-bg {
+    background-color: var(--color-purple-light) !important;
+}
+
+.has-blue-light-bg {
+    background-color: var(--color-blue-light) !important;
+}
+
+.has-pink-light-bg {
+    background-color: var(--color-pink-light) !important;
+}
+
+.has-gray-shadow {
+    text-shadow: var(--text-shadow-size) var(--text-shadow-size) 0 var(--color-gray) !important;
+}
+
+.has-yellow-shadow {
+    text-shadow: var(--text-shadow-size) var(--text-shadow-size) 0 var(--color-yellow-light) !important;
+}
+
+.has-red-shadow {
+    text-shadow: var(--text-shadow-size) var(--text-shadow-size) 0 var(--color-red-light) !important;
+}
+
+.has-orange-shadow {
+    text-shadow: var(--text-shadow-size) var(--text-shadow-size) 0 var(--color-orange-light) !important;
+}
+
+.has-green-shadow {
+    text-shadow: var(--text-shadow-size) var(--text-shadow-size) 0 var(--color-green-light) !important;
+}
+
+.has-purple-shadow {
+    text-shadow: var(--text-shadow-size) var(--text-shadow-size) 0 var(--color-purple-light) !important;
+}
+
+.has-blue-shadow {
+    text-shadow: var(--text-shadow-size) var(--text-shadow-size) 0 var(--color-blue-light) !important;
+}
+
+.has-pink-shadow {
+    text-shadow: var(--text-shadow-size) var(--text-shadow-size) 0 var(--color-pink-light) !important;
+}
+
+.has-no-shadow {
+    text-shadow: none !important;
+}

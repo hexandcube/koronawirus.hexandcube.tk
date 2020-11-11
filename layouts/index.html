@@ -1,0 +1,332 @@
+{{ define "main" }}
+<section class="section">
+    <div class="container">
+
+        <style>
+            .bg-text {
+                color: var(--primary-bg-color) !important;
+            }
+
+            .cases {
+                background-color: rgba(255, 99, 132) !important;
+            }
+
+            .deaths {
+                background-color: rgba(153, 102, 255) !important;
+            }
+
+            .recovered {
+                background-color: rgba(75, 192, 192) !important;
+            }
+
+            .tests {
+                background-color: rgb(44, 170, 243) !important;
+            }
+
+            .active {
+                background-color: rgb(243, 173, 44) !important;
+            }
+
+            .critical {
+                background-color: rgb(209, 85, 85) !important;
+            }
+        </style>
+        <h1 class="title is-1 has-orange-shadow" style="margin-top: -30px">Statystyki dla Polski</h1>
+        <br>
+        <h2 class="title is-2">Dzisiejsza zmiana</h2>
+        <div class="columns">
+            <div class="column">
+                <br>
+                <br>
+                <span class="title is-4 monospace">Nowe przypadki:&nbsp;</span>
+                <span class="tag is-danger is-large cases">
+                    <span class="icon bg-text">
+                        <i class="fas fa-virus"></i>
+                    </span>
+                    <span id="todayCases" class="bg-text"></span>
+                </span>
+                <br>
+                <br>
+                <span class="title is-4 monospace">Wyleczeni:&nbsp;</span>
+                <span class="tag is-danger is-large recovered">
+                    <span class="icon bg-text">
+                        <i class="fas fa-heart"></i>
+                    </span>
+                    <span id="todayRecovered" class="bg-text"></span>
+                </span>
+                <br>
+                <br>
+                <span class="title is-4 monospace">Zmarli:&nbsp;</span>
+                <span class="tag is-danger is-large deaths">
+                    <span class="icon bg-text">
+                        <i class="fas fa-skull-crossbones"></i>
+                    </span>
+                    <span id="todayDeaths" class="bg-text"></span>
+                </span>
+                <br>
+            </div>
+            <div class="column">
+                <canvas id="todayDoughnut" width="200" height="100"></canvas>
+            </div>
+        </div>
+
+        <h2 class="title is-2">Podsumowanie</h2>
+        <div class="columns">
+            <div class="column">
+                <span class="tag is-danger is-large cases">
+                    <span class="icon bg-text">
+                        <i class="fas fa-virus"></i>
+                    </span>
+                    <span id="cases" class="bg-text"></span>
+                </span>
+                <span class="title is-4 monospace">&nbsp; Wszystkich Zakażeń</span>
+                <br>
+                <br>
+                <span class="tag is-danger is-large critical">
+                    <span class="icon bg-text">
+                        <i class="fas fa-procedures"></i>
+                    </span>
+                    <span id="critical" class="bg-text"></span>
+                </span>
+                <span class="title is-4 monospace">&nbsp; Chorych w stanie ciężkim</span>
+                <br>
+                <br>
+                <span class="tag is-danger is-large tests">
+                    <span class="icon bg-text">
+                        <i class="fas fa-vial"></i>
+                    </span>
+                    <span id="tests" class="bg-text"></span>
+                </span>
+                <span class="title is-4 monospace">&nbsp; Wykonanych Testów</span>
+                <br>
+                <br>
+                <span class="tag is-danger is-large active">
+                    <span class="icon bg-text">
+                        <i class="fas fa-head-side-mask"></i>
+                    </span>
+                    <span id="deaths" class="bg-text"></span>
+                </span>
+                <span class="title is-4 monospace">&nbsp; Aktualnie Chorych</span>
+                <br>
+                <br>
+                <span class="tag is-danger is-large recovered">
+                    <span class="icon bg-text">
+                        <i class="fas fa-virus-slash"></i>
+                    </span>
+                    <span id="recovered" class="bg-text"></span>
+                </span>
+                <span class="title is-4 monospace">&nbsp; Wyleczonych</span>
+                <br>
+                <br>
+                <span class="tag is-danger is-large deaths">
+                    <span class="icon bg-text">
+                        <i class="fas fa-skull-crossbones"></i>
+                    </span>
+                    <span id="active" class="bg-text"></span>
+                </span>
+                <span class="title is-4 monospace">&nbsp; Wszstkich Zmarłych</span>
+            </div>
+            <div class="column">
+                <span class="tag is-danger is-large cases">
+                    <span class="icon bg-text">
+                        <i class="fas fa-viruses"></i>
+                    </span>
+                    <span id="casesPerOneMillion" class="bg-text"></span>
+                </span>
+                <span class="title is-4 monospace">&nbsp; Wszystkich zakażeń na milion</span>
+                <br>
+                <br>
+                <span class="tag is-danger is-large critical">
+                    <span class="icon bg-text">
+                        <i class="fas fa-ambulance"></i>
+                    </span>
+                    <span id="criticalPerOneMillion" class="bg-text"></span>
+                </span>
+                <span class="title is-4 monospace">&nbsp; W stanie ciężkim na milion</span>
+                <br>
+                <br>
+                <span class="tag is-danger is-large tests">
+                    <span class="icon bg-text">
+                        <i class="fas fa-vials"></i>
+                    </span>
+                    <span id="testsPerOneMillion" class="bg-text"></span>
+                </span>
+                <span class="title is-4 monospace">&nbsp; Testów na milion osób</span>
+                <br>
+                <br>
+                <span class="tag is-danger is-large active">
+                    <span class="icon bg-text">
+                        <i class="fas fa-head-side-virus"></i>
+                    </span>
+                    <span id="activePerOneMillion" class="bg-text"></span>
+                </span>
+                <span class="title is-4 monospace">&nbsp; Chorych na milion osób</span>
+                <br>
+                <br>
+                <span class="tag is-danger is-large recovered">
+                    <span class="icon bg-text">
+                        <i class="fas fa-shield-virus"></i>
+                    </span>
+                    <span id="recoveredPerOneMillion" class="bg-text"></span>
+                </span>
+                <span class="title is-4 monospace">&nbsp; Wyleczonych na milion osób</span>
+                <br>
+                <br>
+                <span class="tag is-danger is-large deaths">
+                    <span class="icon bg-text">
+                        <i class="fas fa-book-dead"></i>
+                    </span>
+                    <span id="deathsPerOneMillion" class="bg-text"></span>
+                </span>
+                <span class="title is-4 monospace">&nbsp; Zmarłych na milion osób</span>
+                <br>
+                <br>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+
+        <h2 class="title is-2">Ostatnie 90 dni</h2>
+        <canvas id="lastThreeMonths" class="chart" height="30" width="80vw"></canvas>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
+            integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg=="
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js">
+        </script>
+        <script>
+            const api = 'https://disease.sh/v3/covid-19/'
+
+            const getData = async (params) => {
+                const response = await fetch(api + params);
+                if (response.ok) {
+                    return await response.json();
+                } else {
+                    return Promise.reject(response.status);
+                }
+            };
+
+            const today = getData('countries/PL?strict=true');
+            today
+                .then((data) => {
+                    let todayCases = data.todayCases;
+                    let todayDeaths = data.todayDeaths;
+                    let todayRecovered = data.todayRecovered;
+                    let lastUpdateTimestamp = data.updated;
+                    let lastUpdateDate = new Date(lastUpdateTimestamp);
+                    let lastUpdate =
+                        `${lastUpdateDate.getDate()}.${lastUpdateDate.getMonth()+1}.${lastUpdateDate.getFullYear()} ${lastUpdateDate.getHours()}:${lastUpdateDate.getMinutes()}`;
+                    let tests = data.tests;
+                    let cases = data.cases;
+                    let active = data.active;
+                    let deaths = data.deaths;
+                    let critical = data.critical;
+                    let recovered = data.recovered;
+                    let testsPerOneMillion = data.testsPerOneMillion;
+                    let activePerOneMillion = data.activePerOneMillion;
+                    let deathsPerOneMillion = data.deathsPerOneMillion;
+                    let recoveredPerOneMillion = data.recoveredPerOneMillion;
+                    let casesPerOneMillion = data.casesPerOneMillion;
+                    let criticalPerOneMillion = data.criticalPerOneMillion;
+
+                    document.querySelector('#todayCases').innerHTML = '+' + todayCases;
+                    document.querySelector('#todayDeaths').innerHTML = '+' + todayDeaths;
+                    document.querySelector('#todayRecovered').innerHTML = '+' + todayRecovered;
+                    document.querySelector('#lastUpdate').innerHTML = lastUpdate;
+                    document.querySelector('#tests').innerHTML = tests;
+                    document.querySelector('#cases').innerHTML = cases;
+                    document.querySelector('#active').innerHTML = active;
+                    document.querySelector('#deaths').innerHTML = deaths;
+                    document.querySelector('#critical').innerHTML = critical;
+                    document.querySelector('#recovered').innerHTML = recovered;
+                    document.querySelector('#testsPerOneMillion').innerHTML = testsPerOneMillion;
+                    document.querySelector('#activePerOneMillion').innerHTML = activePerOneMillion;
+                    document.querySelector('#deathsPerOneMillion').innerHTML = deathsPerOneMillion;
+                    document.querySelector('#recoveredPerOneMillion').innerHTML = recoveredPerOneMillion;
+                    document.querySelector('#casesPerOneMillion').innerHTML = casesPerOneMillion;
+                    document.querySelector('#criticalPerOneMillion').innerHTML = criticalPerOneMillion;
+
+                    let todayDoughnutChart = new Chart('todayDoughnut', {
+                        type: 'doughnut',
+                        data: {
+                            labels: ['Nowe przypadki', 'Zmarli', 'Wyleczeni'],
+                            datasets: [{
+                                data: [todayCases, todayDeaths, todayRecovered],
+                                borderColor: ['rgba(255, 99, 132, 1)', 'rgba(153, 102, 255, 1)',
+                                    'rgba(75, 192, 192, 1)'
+                                ],
+                                backgroundColor: ['rgba(255, 99, 132, 0.2)',
+                                    'rgba(153, 102, 255, 0.2)',
+                                    'rgba(75, 192, 192, 0.2)'
+                                ]
+                            }, ],
+                        },
+                        options: {
+                            legend: {
+                                position: 'bottom',
+                                display: false
+                            },
+                            plugins: {
+                                labels: [{
+                                        render: 'label',
+                                        position: 'outside',
+                                        textMargin: 10
+                                    },
+                                    {
+                                        render: 'value',
+                                        position: 'default'
+                                    }
+                                ]
+                            }
+                        }
+                    });
+                })
+                .catch((error) => {
+                    console.log('Error: ', error);
+                });
+
+
+            const lastThreeMonths = getData('historical/PL?lastdays=90');
+            lastThreeMonths
+                .then((data) => {
+                    let date = Object.keys(data.timeline.cases);
+                    let total = Object.values(data.timeline.cases);
+                    let deaths = Object.values(data.timeline.deaths);
+                    let recovered = Object.values(data.timeline.recovered);
+
+                    let lastThreeMonthsChart = new Chart('lastThreeMonths', {
+                        type: 'line',
+                        data: {
+                            labels: date,
+                            datasets: [{
+                                    label: 'Wszystkie przypadki',
+                                    data: total,
+                                    borderColor: 'rgba(255, 99, 132, 1)',
+                                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                                },
+                                {
+                                    label: 'Wyleczeni',
+                                    data: recovered,
+                                    borderColor: 'rgba(75, 192, 192, 1)',
+                                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                },
+                                {
+                                    label: 'Zmarli',
+                                    data: deaths,
+                                    borderColor: 'rgba(153, 102, 255, 1)',
+                                    backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                                },
+                            ],
+                        }
+                    });
+                })
+                .catch((error) => {
+                    console.log('Error: ', error);
+                });
+        </script>
+        <br>
+        <br>
+    </div>
+</section>
+
+{{ end }}

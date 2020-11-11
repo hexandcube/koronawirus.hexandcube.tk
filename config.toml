@@ -1,0 +1,29 @@
+baseURL = "https://koronawirus.hexandcube.tk/"
+languageCode = "pl-pl"
+title = "Hexandcube"
+enableEmoji = true
+enableInlineShortcodes = true
+watch = true
+enableRobotsTXT = true
+
+[params]
+    siteName = "Hexandcube | Koronawirus "
+    siteDescription = "Statystyki COVID-19 dla Polski"
+    openGraph = true
+    ogType = "profile"
+    ogURL = "https://koronawirus.hexandcube.tk"
+    ogImageURL = "https://koronawirus.hexandcube.tk/assets/img/meta/og-image.png"
+    twitterCards = true
+    twitterCardType = "summary"
+    twitterSiteHandle = "@hexandcube"
+    twitterCreatorHandle = "@hexandcube"
+
+[menu]
+
+    [[menu.navbar]]
+        identifier = "hxnc"
+        name = "hexandcube.tk"
+        url = "https://hexandcube.tk"
+        weight = 1
+
+

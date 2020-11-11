@@ -1,0 +1,48 @@
+@import url('https://fonts.hexandcube.tk/css?family=Maven%20Pro:ital,wght@0,400&family=Space%20Mono:ital,wght@0,400&family=Montserrat:ital,wght@0,700&display=swap');
+
+:root {
+    --headingFont: 'Montserrat', sans-serif;
+    --sansSerifFont: 'Maven Pro', sans-serif;
+    --monospaceFont: 'Space Mono', sans-serif;
+    --text-shadow-size: 2px;
+    --color-gray-light: #e1e2e4;
+    --color-yellow-light: #ecdc5f;
+    --color-red-light: #ec6462;
+    --color-orange-light: #ff7c65;
+    --color-green-light: #7abe99;
+    --color-purple-light: #9b82df;
+    --color-blue-light: #7fb7f9;
+    --color-pink-light: #e65887;
+    --color-gray: #3f4653;
+    --color-yellow: #eed72c;
+    --color-red: #e7403d;
+    --color-orange: #ec5e45;
+    --color-green: #06c2af;
+    --color-purple: #6026ff;
+    --color-blue: #1e87ff;
+    --color-pink: #ff1563;
+    --accent-color: #ec6462;
+}
+
+[data-theme="light"] {
+    --heading-color: #131f33;
+    --font-color: #3f4653;
+    --active-bg-color: #e2e8f6;
+    --primary-bg-color: #ffffff;
+    --secondary-bg-color: #f3f3f3;
+}
+
+[data-theme="dark"] {
+    --color-gray-light: #3f4653;
+    --color-blue-light: #4596f1;
+    --color-yellow-light: #dfcd45;
+    --heading-color: #ebebeb;
+    --font-color: #ffffff;
+    --active-bg-color: #283042;
+    --primary-bg-color: #1b1c22;
+    --secondary-bg-color: #26282e;
+}
+
+::selection {
+    background-color: var(--accent-color);
+}

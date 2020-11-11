@@ -1,0 +1,44 @@
+[build]
+    command = "hugo"
+    publish = "public"
+
+[dev]
+    command = "hugo server --disableFastRender"
+
+[[redirects]]
+    from = "/*"
+    to = "/404.html"
+    status = 404
+    force = false
+
+[[redirects]]
+    from = "/cookies"
+    to = "/pages/cookiepolicy"
+    status = 301
+    force = true
+
+[[redirects]]
+    from = "/privacy"
+    to = "/pages/privacypolicy"
+    status = 301
+    force = true
+
+[[plugins]]
+    package = "netlify-purge-cloudflare-on-deploy"
+
+[[plugins]]
+    package = "netlify-plugin-image-optim"
+
+[[plugins]]
+    package = "netlify-plugin-inline-critical-css"
+    [plugins.inputs]
+        minify = true
+
+[[plugins]]
+    package = "@netlify/plugin-sitemap"
+
+[[plugins]]
+    package = "netlify-plugin-submit-sitemap"
+    [plugins.inputs]
+        baseUrl = "https://hexandcube.tk"
+        sitemapPath = "/sitemap.xml"

@@ -1,0 +1,39 @@
+{{ define "main" }}
+<div class="container" style="min-height: 60vh;">
+    {{ with .Title}}
+    <h1 class="section-title has-blue-shadow">{{ . }}</h1>
+    {{ end }}
+    <br><br>
+    {{ with .Content }}
+    <main class="content monospace">{{ . }}</main>
+    {{ end }}
+    <div class="posts">
+        {{ $paginator := .Paginate .Data.Pages }}
+        {{ range $paginator.Pages }}
+        <div class="post on-list">
+            <h1 class="post-title title is-4">
+                <a href="{{ .Permalink }}">{{ .Title | markdownify }}</a>
+            </h1>
+            <div class="post-meta">
+                <span class="post-date ">
+                    {{ .Date.Format "2006-01-02" }}
+                </span>
+                {{ if .Params.tags }}
+                ::
+                <span class="post-tags">
+                    {{ range .Params.tags }}
+                    #<a href="{{ (urlize (printf "tags/%s/" . )) | absLangURL }}">
+                        {{- . -}}
+                    </a>&nbsp;
+                    {{ end }}
+                </span>
+                {{ end }}
+            </div>
+        </div>
+        <br>
+        {{ end }}
+        {{ partial "pagination.html" . }}
+        <br>
+    </div>
+</div>
+{{ end }}

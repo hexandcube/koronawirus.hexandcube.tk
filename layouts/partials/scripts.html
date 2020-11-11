@@ -1,0 +1,71 @@
+<script>
+    const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+
+    toggleSwitch.addEventListener('change', switchTheme, false);
+
+    function switchTheme(e) {
+        if (e.target.checked) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+            localStorage.setItem('theme', 'light');
+        }
+    }
+
+    const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+
+    if (currentTheme) {
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        if (currentTheme === 'dark') {
+            toggleSwitch.checked = true;
+        }
+
+        if (currentTheme === 'light') {
+            toggleSwitch.checked = false;
+        }
+    } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+
+        const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+        if ($navbarBurgers.length > 0) {
+            $navbarBurgers.forEach(el => {
+                el.addEventListener('click', () => {
+
+                    const target = el.dataset.target;
+                    const $target = document.getElementById(target);
+                    el.classList.toggle('is-active');
+                    $target.classList.toggle('is-active');
+                });
+            });
+        }
+    });
+
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js', {
+                scope: '/'
+            })
+            .then((reg) => {
+                console.log('Registration succeeded. Scope is ' + reg.scope);
+            }).catch((error) => {
+                console.log('Registration failed with ' + error);
+            });
+    }
+
+    window.onscroll = function () {
+        var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        var scrolled = (winScroll / height) * 100;
+        document.getElementById("scroll-progress").style.width = scrolled + "%";
+    };
+</script>
+<script src="/js/highlight.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://wdf91pvxlsbj.statuspage.io/embed/script.js"></script>
+<script src="/js/cookieconsent.js"></script>
